@@ -1,12 +1,24 @@
-package com.sportyshoes.Model;
+package com.sportyshoes.model;
 
-public class Products {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String category;
     private double price;
 
-    public Products(int id, String name, String category, double price) {
+    public Product() {
+
+    }
+
+    public Product(int id, String name, String category, double price) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -47,7 +59,7 @@ public class Products {
 
     @Override
     public String toString() {
-        return "Products [category=" + category + ", id=" + id + ", name=" + name + ", price=" + price + "]";
+        return "Product [category=" + category + ", id=" + id + ", name=" + name + ", price=" + price + "]";
     }
 
 }
