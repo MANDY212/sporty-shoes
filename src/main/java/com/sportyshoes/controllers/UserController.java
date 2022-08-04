@@ -23,7 +23,7 @@ public class UserController {
     @RequestMapping("/user")
     @ResponseBody
     public String user() {
-        return " Welcome to Sport Shoes ";
+        return " Welcome to Sporty Shoes ";
     }
 
     @PostMapping("/user/signup")
