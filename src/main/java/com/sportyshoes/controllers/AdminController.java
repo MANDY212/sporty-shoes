@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.sportyshoes.model.Product;
+import com.sportyshoes.model.PurchaseReport;
 import com.sportyshoes.model.User;
 import com.sportyshoes.repositories.ProductRepository;
+import com.sportyshoes.repositories.PurchaseRepo;
 import com.sportyshoes.repositories.UserRepository;
 
 @RestController
@@ -22,6 +24,9 @@ public class AdminController {
 
     @Autowired
     UserRepository urepo;
+
+    @Autowired
+    PurchaseRepo prepo;
 
     @RequestMapping("/admin")
     @ResponseBody
@@ -55,4 +60,23 @@ public class AdminController {
         return urepo.findAll();
     }
 
+    @GetMapping("/admin/products")
+    public List<Product> showProducts() {
+        return repo.findAll();
+    }
+
+    @GetMapping("/admin/getProductsByCategory")
+    public List<Product> getProductsByCategory(@RequestParam String category) {
+        return repo.findAllByCategory(category);
+    }
+
+    @GetMapping("/admin/purchasereport")
+    public List<PurchaseReport> getPurchaseReport() {
+        return prepo.findAll();
+    }
+
+    @GetMapping("/admin/purchasereportbydate/{date}")
+    public List<PurchaseReport> getPurchaseReportByDate(@RequestParam("date") String date) {
+        return prepo.findAllByDateofpurchase(date);
+    }
 }
